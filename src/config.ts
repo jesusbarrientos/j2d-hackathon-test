@@ -2,7 +2,7 @@ import Joi from 'joi'
 
 const envVarsSchema = Joi.object()
   .keys({
-    VITE_API_URL: Joi.string().required().description('API url').default('https://rickandmortyapi.com/api'),
+    VITE_API_URL: Joi.string().description('API url').default('https://rickandmortyapi.com/api'),
   })
   .unknown()
 
