@@ -9,8 +9,9 @@ export const CharacterCard = ({ character }: Props) => {
   return (
     <article className={`
       flex min-h-[300px] w-[250px] flex-col
-      items-center gap-4 rounded-xl border-2 
-      border-gray-300 bg-surface px-3 py-4 backdrop-blur-sm
+      items-center gap-4 overflow-auto rounded-xl 
+      border-2 border-gray-300 bg-surface px-3 py-4
+      backdrop-blur-sm
     `}>
       <img src={character.image} alt={character.name} className="w-[60px] rounded-full object-cover"/>
       <h3 className="text-center text-[1.1rem] font-semibold">{character.name}</h3>
