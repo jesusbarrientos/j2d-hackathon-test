@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply bg-black min-h-full h-full font-sans text-white;
+  }
+
+  body,
+  #root {
+    @apply min-h-full h-full;
+  }
+}
+
+@layer components {
+  .fluid-container {
+    @apply max-w-[1760px] mx-auto;
+  }
+
+  .px-def-border {
+    @apply px-4;
+  }
+
+  .header-search-bar {
+    @apply fluid-container px-def-border
+    fixed top-0 left-0 w-full z-50 pb-20 flex flex-col gap-8 justify-center items-center
+    bg-gradient-to-b from-black from-70% to-transparent;
+  }
+}
