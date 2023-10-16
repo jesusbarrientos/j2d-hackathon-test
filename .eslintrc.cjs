@@ -9,6 +9,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:react-hooks/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   parser        : '@typescript-eslint/parser',
   parserOptions : {
@@ -22,6 +23,11 @@ module.exports = {
     },
     'import/resolver': {
       typescript: {},
+    },
+    'tailwindcss': {
+      cssFiles: [
+        '**/*.scss',
+      ],
     },
   },
   rules: {
@@ -39,7 +45,7 @@ module.exports = {
         },
       },
     ],
-    'import/no-unresolved'              : 'error',
+    'import/no-unresolved'              : 'warn',
     'dot-notation'                      : 'off',
     'require-await'                     : 'off',
     'no-async-promise-executor'         : 'off',
@@ -163,7 +169,8 @@ module.exports = {
       maxEOF : 0,
       maxBOF : 0,
     }],
-    'padded-blocks' : [ 'error', 'never', { allowSingleLineBlocks: true }],
-    'semi'          : [ 'error', 'never' ],
+    'padded-blocks'                      : [ 'error', 'never', { allowSingleLineBlocks: true }],
+    'semi'                               : [ 'error', 'never' ],
+    '@typescript-eslint/no-explicit-any' : 'off',
   },
 }

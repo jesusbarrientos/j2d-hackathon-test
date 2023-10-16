@@ -2,15 +2,23 @@ import classnames from 'classnames'
 import { useState } from 'react'
 import { InputSearchSelector } from '@/presentation/components/InputSearch/InputSearchSelector.tsx'
 import { InputSearchTextInput } from '@/presentation/components/InputSearch/InputSearchTextInput.tsx'
-import { CharacterGender, CharacterStatus } from '@/repositories/characters/types.ts'
+import { CharacterGender, CharacterStatus, FilterableCharacterProperties } from '@/repositories/characters/types.ts'
 
-type Props = {
-    className?: string
+export type InputSearchProps = {
+  className?: string,
+  onChange?: (value: { filter: FilterableCharacterProperties, value: string }) => void,
 }
 
-export const InputSearch = ({ className }: Props) => {
-  const [ value, setValue ] = useState('name')
-  const classes = classnames('relative flex max-w-[400px] min-w-[100px] w-full', className)
+export const InputSearch = ({ className, onChange }: InputSearchProps) => {
+  const [ filter, setFilter ] = useState<FilterableCharacterProperties>('name')
+  const classes = classnames('relative flex w-full min-w-[100px] max-w-[400px]', className)
+
+  const onChangeHandler = (value: string) => {
+    onChange?.({
+      filter,
+      value,
+    })
+  }
 
   return (
     <div className={classes}>
@@ -23,15 +31,19 @@ export const InputSearch = ({ className }: Props) => {
           { value: 'type', label: 'Tipo' },
           { value: 'gender', label: 'Género' },
         ]}
-        onChange={(value) => setValue(value)}
+        onChange={(value) => setFilter(value as FilterableCharacterProperties)}
         selectClassName="rounded-r-none"
       />
 
-      {(value === 'name' || value === 'species' || value === 'type') && (
-        <InputSearchTextInput className="flex-1" inputClassName="rounded-l-none border-l-0"/>
+      {(filter === 'name' || filter === 'species' || filter === 'type') && (
+        <InputSearchTextInput
+          className="flex-1"
+          inputClassName="rounded-l-none border-l-0"
+          onChange={onChangeHandler}
+        />
       )}
 
-      {value === 'status' && (
+      {filter === 'status' && (
         <InputSearchSelector
           name="status"
           options={[
@@ -41,10 +53,11 @@ export const InputSearch = ({ className }: Props) => {
           ]}
           className="flex-1"
           selectClassName="rounded-l-none border-l-0"
+          onChange={onChangeHandler}
         />
       )}
 
-      {value === 'gender' && (
+      {filter === 'gender' && (
         <InputSearchSelector
           name="gender"
           options={[
@@ -55,6 +68,7 @@ export const InputSearch = ({ className }: Props) => {
           ]}
           className="flex-1"
           selectClassName="rounded-l-none border-l-0"
+          onChange={onChangeHandler}
         />
       )}
     </div>

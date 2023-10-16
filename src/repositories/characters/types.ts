@@ -15,6 +15,8 @@ export enum CharacterGender {
     UNKNOWN = 'unknown',
 }
 
+export type FilterableCharacterProperties = 'name' | 'status' | 'species' | 'type' | 'gender'
+
 export type Character = {
     id: number;
     name: string;

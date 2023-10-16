@@ -6,7 +6,7 @@ type Props = {
 }
 
 export const Logo = ({ className }: Props) => {
-  const classes = classnames('max-w-[400px] min-w-[100px] w-[80vw] pointer-events-none', className)
+  const classes = classnames('pointer-events-none w-[80vw] min-w-[100px] max-w-[400px]', className)
 
   return (
     <img

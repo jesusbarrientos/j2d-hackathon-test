@@ -15,7 +15,7 @@ export default {
     extend: {
       colors: {
         surface : 'rgba(58,58,58,0.5)',
-        border  : '#bfde42',
+        accent  : '#16dc83',
       },
     },
   },

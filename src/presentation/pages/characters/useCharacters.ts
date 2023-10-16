@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useInfiniteData } from '@/presentation/utils/useInfiniteData.ts'
 import { UiStateStatus, useUiStatus } from '@/presentation/utils/useUiStatus.ts'
 import { Character, QueryCharactersInput } from '@/repositories/characters/types.ts'
 import { useCharactersRepository } from '@/repositories/characters/useCharactersRepository.ts'
@@ -8,10 +9,15 @@ import { PaginatedData } from '@/repositories/common/types.ts'
 export const useCharacters = () => {
   const { queryCharacters } = useCharactersRepository()
   const status = useUiStatus()
+  const { items: allItems, addPage, clear } = useInfiniteData()
   const [ items, setItems ] = useState<PaginatedData<Character>>()
 
   const query = async (params: QueryCharactersInput) => {
     status.resetStatus()
+
+    if (params.page === 1) {
+      clear()
+    }
 
     try {
       status.setStatus(UiStateStatus.LOADING)
@@ -21,6 +27,7 @@ export const useCharacters = () => {
       status.setStatus(UiStateStatus.SUCCESS)
       status.setMessage('Personajes cargados correctamente')
       setItems(itemsResult)
+      addPage(itemsResult)
       return itemsResult
     }
     catch (error) {
@@ -35,7 +42,10 @@ export const useCharacters = () => {
     isLoading  : status.isLoading,
     isSuccess  : status.isSuccess,
     isError    : status.isError,
-    characters : items,
+    characters : allItems,
+    page       : items?.page || 1,
+    nextPage   : items?.page ? items.page + 1 : 1,
+    totalPages : items?.totalPages || 0,
     query,
   }
 }
