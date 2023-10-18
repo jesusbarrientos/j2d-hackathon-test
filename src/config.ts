@@ -13,7 +13,7 @@ if (error) {
 }
 
 const config = {
-  apiUrl: envVars.VITE_API_URL,
+  apiUrl: envVars?.VITE_API_URL,
 }
 
 export default config
