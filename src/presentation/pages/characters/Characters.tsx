@@ -5,7 +5,7 @@ import { InputSearch } from '@/presentation/components/InputSearch/InputSearch.t
 import { Logo } from '@/presentation/components/Logo.tsx'
 import { useCharacters } from '@/presentation/pages/characters/useCharacters.ts'
 import { useSearch } from '@/presentation/utils/useSearch.ts'
-import { FilterableCharacterProperties } from '@/repositories/characters/types.ts'
+import { FilterableCharacterProperties } from '@/resources/repositories/characters/types.ts'
 
 export const Characters = () => {
   const { characters, query, isLoading, totalPages, nextPage } = useCharacters()

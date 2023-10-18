@@ -1,4 +1,4 @@
-import { RestPaginatedDataResponse } from '@/repositories/common/rest/types.ts'
+import { RestPaginatedDataResponse } from '@/resources/repositories/common/rest/types.ts'
 
 export type CharacterRestSchema = {
     id: number;

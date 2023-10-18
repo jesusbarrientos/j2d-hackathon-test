@@ -1,5 +1,5 @@
-import { CharacterRestSchema } from '@/repositories/characters/rest/types.ts'
-import { CharacterGender, CharacterStatus } from '@/repositories/characters/types.ts'
+import { CharacterRestSchema } from '@/resources/repositories/characters/rest/types.ts'
+import { CharacterGender, CharacterStatus } from '@/resources/repositories/characters/types.ts'
 
 export const mapCharacterStatus = (value: CharacterRestSchema['status']): CharacterStatus => {
   switch (value) {

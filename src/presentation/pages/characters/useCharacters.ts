@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useInfiniteData } from '@/presentation/utils/useInfiniteData.ts'
 import { UiStateStatus, useUiStatus } from '@/presentation/utils/useUiStatus.ts'
-import { Character, QueryCharactersInput } from '@/repositories/characters/types.ts'
-import { useCharactersRepository } from '@/repositories/characters/useCharactersRepository.ts'
-import { emptyPaginatedData } from '@/repositories/common/emptyPaginatedData.ts'
-import { PaginatedData } from '@/repositories/common/types.ts'
+import { Character, QueryCharactersInput } from '@/resources/repositories/characters/types.ts'
+import { useCharactersRepository } from '@/resources/repositories/characters/useCharactersRepository.ts'
+import { emptyPaginatedData } from '@/resources/repositories/common/emptyPaginatedData.ts'
+import { PaginatedData } from '@/resources/repositories/common/types.ts'
 
 export const useCharacters = () => {
   const { queryCharacters } = useCharactersRepository()

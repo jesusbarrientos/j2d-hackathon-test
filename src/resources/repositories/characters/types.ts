@@ -1,4 +1,4 @@
-import { PaginatedData } from '@/repositories/common/types.ts'
+import { PaginatedData } from '@/resources/repositories/common/types.ts'
 
 // MODEL
 

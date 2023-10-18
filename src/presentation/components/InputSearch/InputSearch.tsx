@@ -2,7 +2,11 @@ import classnames from 'classnames'
 import { useState } from 'react'
 import { InputSearchSelector } from '@/presentation/components/InputSearch/InputSearchSelector.tsx'
 import { InputSearchTextInput } from '@/presentation/components/InputSearch/InputSearchTextInput.tsx'
-import { CharacterGender, CharacterStatus, FilterableCharacterProperties } from '@/repositories/characters/types.ts'
+import {
+  CharacterGender,
+  CharacterStatus,
+  FilterableCharacterProperties,
+} from '@/resources/repositories/characters/types.ts'
 
 export type InputSearchProps = {
   className?: string,

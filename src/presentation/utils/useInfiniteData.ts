@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { PagesCache } from '@/presentation/utils/types.ts'
-import { PaginatedData } from '@/repositories/common/types.ts'
+import { PaginatedData } from '@/resources/repositories/common/types.ts'
 
 export const useInfiniteData = () => {
   const [ pages, setPages ] = useState<PagesCache>({})

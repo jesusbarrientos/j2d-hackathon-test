@@ -1,5 +1,5 @@
 import { IconCurrentLocation } from '@tabler/icons-react'
-import { Character } from '@/repositories/characters/types.ts'
+import { Character } from '@/resources/repositories/characters/types.ts'
 
 type Props = {
     character: Character

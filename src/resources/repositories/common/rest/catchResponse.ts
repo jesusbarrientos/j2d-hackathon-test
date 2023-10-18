@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios'
-import { CatchResponse, HttpErrorResponse } from '@/repositories/common/rest/types.ts'
+import { CatchResponse, HttpErrorResponse } from '@/resources/repositories/common/rest/types.ts'
 
 export const catchResponse: CatchResponse = async (fn) => {
   try {

@@ -1,4 +1,4 @@
-import { MapPaginatedData } from '@/repositories/common/rest/types.ts'
+import { MapPaginatedData } from '@/resources/repositories/common/rest/types.ts'
 
 export const mapPaginatedData: MapPaginatedData = (data, page) => {
   return {
