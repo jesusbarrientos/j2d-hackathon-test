@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { CharacterCard } from '@/presentation/components/CharacterCard.tsx'
 import { Footer } from '@/presentation/components/Footer.tsx'
 import { InputSearch } from '@/presentation/components/InputSearch/InputSearch.tsx'
 import { Logo } from '@/presentation/components/Logo.tsx'
 import { useCharacters } from '@/presentation/pages/characters/useCharacters.ts'
+import { useInfiniteScroll } from '@/presentation/utils/useInfiniteScroll.ts'
 import { useSearch } from '@/presentation/utils/useSearch.ts'
 import { FilterableCharacterProperties } from '@/resources/repositories/characters/types.ts'
 
@@ -12,6 +13,17 @@ export const Characters = () => {
   const [ filter, setFilter ] = useState<{ filter: FilterableCharacterProperties, value: string}>({ filter: 'name', value: '' })
   const sendQuery = useSearch(query)
 
+  const whenScrollToBottomOfThePage = useCallback(() => {
+    if (!isLoading && nextPage <= totalPages) {
+      query({
+        [filter.filter] : filter.value,
+        page            : nextPage,
+      })
+    }
+  }, [ query ])
+
+  useInfiniteScroll(whenScrollToBottomOfThePage)
+
   // ejecutar búsqueda cuando se cambie el filtro
   useEffect(() => {
     sendQuery({
@@ -19,27 +31,6 @@ export const Characters = () => {
       page            : 1,
     })
   }, [ filter ])
-
-  // ejecutar búsqueda cuando se cambie la página
-  useEffect(() => {
-    const handleScroll =() => {
-      const {
-        scrollTop,
-        scrollHeight,
-        clientHeight,
-      } = window.document.documentElement
-
-      if (!isLoading && (scrollTop + clientHeight) >= (scrollHeight - 5) && nextPage <= totalPages) {
-        query({
-          [filter.filter] : filter.value,
-          page            : nextPage,
-        })
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [ characters, filter ])
 
   return (
     <main className="flex min-h-full flex-col items-center gap-16">
